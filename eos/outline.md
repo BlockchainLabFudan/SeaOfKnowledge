@@ -134,6 +134,36 @@ v1.3.0目前存在的 plugin
 `test_control_plugin`
 `test_control_api_plugin`
 
+nodeos 启动指令分析
+
+```
+$ nodeos
+  --genesis-json  ./genesis.json    # 创世区块配置文件
+  --blocks-dir    ./somenode/blocks # 区块数据存储位置
+  --config-dir    ./somenode/       # 节点配置文件位置
+  --data-dir      ./somenode/       # 节点数据存储位置
+  --chain-state-db-size-mb  1024    # 最大缓存池大小
+  --enable-stale-production         # 稳定出块???
+  --max-transaction-time=1000       # 最大交易等待时间???
+  --producer-name  somenode         # 昵称
+  --signature-provider=EOS6N7FuKhCoEf2NUfsmZ5Gux4fNn2gMiroMNsR6tfgUT7VxNQEV3=KEY:5JSmNkiGSrsHsPVjoZYRR29GqFyhiaXrfD7pkzZoLoFjUKFccLv # 公私钥
+  --verbose-http-errors             # http 报错打印详情
+  --plugin eosio::http_plugin       # 开启 http_plugin
+  --plugin eosio::chain_api_plugin  # 开启 chain_api_plugin
+  --plugin eosio::producer_plugin   # 开启 producer_plugin
+  --http-server-address     127.0.0.1:8000  # 本节点http服务监听端口
+  --p2p-listen-endpoint     127.0.0.1:9000  # 本节点p2p服务监听端口
+  --p2p-peer-address        127.0.0.1:9000  # peer 节点地址
+  --p2p-peer-address        127.0.0.1:9001  # peer 节点地址
+  --p2p-peer-address        127.0.0.1:9002  # peer 节点地址
+  --p2p-peer-address        127.0.0.1:9003  # peer 节点地址(可以添加很多)
+  --max-clients             19  
+  --p2p-max-nodes-per-host  19
+  --max-irreversible-block-age -1
+  --contracts-console       # 合约执行结果打印到log中
+  2>>./log.txt              # 所有打印结果放到log.txt中
+```
+
 ```c
 bnet_plugin
 /**
