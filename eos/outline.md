@@ -11,20 +11,172 @@
 
 #### blockchain 1.0
 
-- 区块链: 每隔一定时间将所有交易(操作)打包为一个区块, 新区块中包含上一个区块的哈希, 保证不能被篡改
+<img src='./img/9300ca52660870fe4ebc7d597fa84a4.png'>
+
+- 区块链:
+  
+  每隔一定时间将所有交易(操作)打包为一个区块, 新区块中包含上一个区块的哈希, 保证不能被篡改
+
+  - Mastering bitcoin:
+
+    区块链是由包含交易信息的区块`从后向前有序链接起来`的数据结构。 它可以被存储为flat file（⼀种包含没有相对关系记录的
+    ⽂件） ， 或是存储在⼀个简单`数据库`中。 ⽐特币核⼼客⼾端使⽤Google的`LevelDB数据库`存储区块链元数据。 区块被从后向
+    前有序地链接在这个链条⾥， `每个区块都指向前⼀个区块`。 区块链经常被视为⼀个`垂直的栈`， 第⼀个区块作为栈底的⾸区
+    块， 随后每个区块都被放置在其他区块之上。 ⽤栈来形象化表⽰区块依次堆叠这⼀概念后， 我们便可以使⽤⼀些术语， 例
+    如： __“⾼度”来表⽰区块与⾸区块之间的距离__； 以及“顶部”或“顶端”来表⽰最新添加的区块。
+
+  <img src='./img/6c875fc5ec10d757792c1c0a5734948.png'>
+
 - 密码学: 每个用户本质上是一个私钥, 私钥利用单向函数生成出公钥, 地址等. 私钥意味着一切
+  
+  <img src='./img/43661c2df056ca1627ac2198494e2b7.png'>
+
+  <img src='./img/4dc3e49a10333f49a1a8273b7889a65.png'>
+
+  - bitcoin:
+
+    `secp256k1`
+
+    `{K = k * G}`
+
+    `A = RIPEMD160(SHA256(K))`
+
+    k: 私钥, 256 bit 的数字
+
+    K: 公钥, 椭圆曲线上的一个点(x, y)
+
+    A: 地址, 公钥K可推导出A, 但A不可推出K, 单向
+
+  - 助记词: 私钥太难记, 换成12个单词
+
+  <img src='./img/feee284cd3db0d61eb31b42ab2d6e7f.png'>
+
+  - 数字签名: 用私钥来对一段信息(或者交易)进行签名, 证明其正确性(Proof of Knowledge)
+
+    Elliptic Curve Digital Signature Algorithm (ECDSA)
+  
 - 哈希:   满屏幕的哈希~~
+
+  wiki hash定义: __"a hash function is any function that can be used to map data of arbitrary size to data of fixed size."__
+
+  - The `Secure Hash Algorithms` are a family of cryptographic hash functions published by the National Institute of Standards and Technology (NIST) as a U.S. Federal Information Processing Standard (FIPS), including:
+
+    - `SHA-0`: A retronym applied to the original version of the 160-bit hash function published in 1993 under the name "SHA". It was withdrawn shortly after publication due to an undisclosed "significant flaw" and replaced by the slightly revised version SHA-1.
+    - `SHA-1`: A 160-bit hash function which resembles the earlier MD5 algorithm. This was designed by the National Security Agency (NSA) to be part of the Digital Signature Algorithm. Cryptographic weaknesses were discovered in SHA-1, and the standard was no longer approved for most cryptographic uses after 2010.
+    - `SHA-2`: A family of two similar hash functions, with different block sizes, known as `SHA-256` and SHA-512. They differ in the word size; SHA-256 uses 32-bit words where SHA-512 uses 64-bit words. There are also truncated versions of each standard, known as SHA-224, SHA-384, SHA-512/224 and SHA-512/256. These were also designed by the NSA.
+    - `SHA-3(Keccak-256)`: A hash function formerly called Keccak, chosen in 2012 after a public competition among non-NSA designers. It supports the same hash lengths as SHA-2, and its internal structure differs significantly from the rest of the SHA family.
+
+  - 其他类型的哈希:
+
+    - `md5` - 文件校验码
+
+    - `奇偶校验码` - 可以看做最简单的哈希, 输出 1 bit
+
 - 分布式: 整个区块链系统是一个庞大的分布式系统, 包含各种角色,如 用户, 全节点, 轻节点
+
+  Peer to Peer(P2P)
+
+  URL的一般语法格式为：
+  
+  protocol://hostname[:port]/path/[;parameters][?query]#fragment
+
+  - file
+  - http(s)
+  - ftp
+  - ed2k
+  - thunder
+  - ipfs
+
 - 共识:   分布式系统中必备的数据一致性策略, bitcoin, ethereum为PoW, EOS为DPoS. Fabric中用到PBFT
+  
+  - 中本聪的主要发明就是这种__去中⼼化的⾃发共识机制__。 这种⾃发， 是指没有经过明确选举或者没有固定达成的共识的时间。
+  换句话说， __共识是数以千计的独⽴节点遵守了简单的规则通过异步交互⾃发形成的产物__。 所有的⽐特币属性， 包括货币、 交
+  易、 ⽀付以及不依靠中⼼机构和信任的安全模型等都是这个机制的衍⽣物。 ⽐特币的去中⼼化共识由所有⽹络节点的4种独⽴
+  过程相互作⽤⽽产⽣：
+    - 每个全节点依据综合标准对每个交易进⾏独⽴验证
+    - 通过完成`⼯作量证明算法`的验算， 挖矿节点将交易记录独⽴打包进新区块，
+    - 每个节点独⽴的对新区块进⾏`校验`并组装进区块链
+    - 每个节点对区块链进⾏独⽴选择， 在⼯作量证明机制下选择累计⼯作量最⼤的区块链
+
+  - Proof of Work (PoW)
+  - Proof of Stake (PoS)
+  - Proof of Authority (PoA)
+  - Delegated Proof of Stake (DPoS) 
+
 - 交易:   原文为transaction, 也可理解为事务. 区块中主要记录下来的内容
 - Merkle: 一种哈希二叉树, 啊啊啊~哈希~. 用于快速验证交易的正确性
+
+  <img src='./img/8bf57d75a10e8306d1956f9e64289ac.png'>
+
+  <img src='./img/38574522a10d96bef3d76e14f2e2b67.png'>
+
+- 经济模型: 交易费, 矿工奖励, 用户奖励等等.
 
 #### blockchain 2.0
 
 - 智能合约: 
   - bitcoin的交易中会包含一个script, 由bitcoin定义的一个指令集中的各种指令构成, 用于验证交易的有效性
   - ethereum提出了smart contract的概念, 将区块链的功能从单纯的记录交易数据拓展出无限的可能
-- DAPP: 基于智能合约, 可以进行各种去中心化的应用的开发, DAPP最主要的特点是所有敏感操作都记录在区块链上
+
+    "As we discovered in [intro], there are two different types of account in Ethereum: `Externally Owned Accounts (EOAs)`
+    and `contract accounts`. EOAs are controlled by software, such as a wallet application, that is external to Ethereum.
+    Contract accounts are controlled by software that runs within the `Ethereum Virtual Machine (EVM)`. Both types of
+    accounts are identified by an Ethereum address. In this section, we will discuss the second type, contract accounts, and
+    the software that controls them: smart contracts." - ehtereum book
+
+    - Ethereum Virtual Machine
+
+      智能合约执行环境
+
+    - `smart contract`
+
+      "The term `smart contract` has been used to describe a wide variety of different things. In the 1990’s, cryptographer Nick
+      Szabo coined the term and defined it as __“a set of promises, specified in digital form, including protocols within which
+      the parties perform on the other promises.”__ Since then, the concept of smart contracts has evolved, especially after the
+      introduction of decentralized blockchains with the invention of Bitcoin in 2009. In this book, we use the term “smart
+      contract” to refer to `immutable computer programs that run deterministically in the context of an Ethereum Virtual Machine`, 
+      which operates as a `decentralized world computer`."
+
+    - 比较经典的几个DApp:
+
+      `crypto kitties` - 收集控
+
+      `fomo3D` - 赌博控
+
+    - 代币标准:
+
+      [ERC20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md)
+
+      "The ERC20 standard defines a common interface for contracts implementing a token, such that any compatible token
+      can be accessed and used in the same way. The interface consists of a number of functions that must be present in
+      every implementation of the standard, as well as some optional functions and attributes that may be added by
+      developers."
+
+      Erc20 定义了一套代币合约的标准(接口规范)
+
+      [ERC223]
+
+        The ERC223 proposal attempts to solve the problem of inadvertent transfer of tokens to a contract (that may or may
+        not support tokens) by detecting whether the destination address is a contract or not. 
+
+      [ERC777]
+
+      [ERC721 - non-fungible token (deed) standard]
+
+        deed: A legal document that is signed and delivered, especially one regarding the ownership of property or legal rights.
+
+    - ICO
+
+      小康之路
+
+- DAPP:
+  
+  Decentralized Applications
+
+  基于智能合约, 可以进行各种去中心化的应用的开发, DAPP最主要的特点是所有敏感操作都记录在区块链上
+
+  <img src='./img/8142dba154fc6f261d50cf9c84d9580.png'>
+  
 
 #### 目前存在的一些问题
 
@@ -33,8 +185,10 @@
 - 交易速度慢. TPS(Transaction per Second)对于比特币来说, 只有2~3, __巨慢__, 以太坊也不是很高, 这一定程度上受PoW机制的影响. 另外由于一条记录一个区块的确认需要得到全网节点2/3的确认, 网络延迟和数据广播传递都制约了交易速度
 - 存储量太大. 由于每个节点都要存储所有的区块链内容, 因此对每台机器的存储要求都很高, 16年bitcoin已经有大概160G的大小
 - 黑客攻击.   因为太安全, 技术大佬们黑完之后安心跑路, 毫无后顾之忧
-- 分叉.       "兄弟, 代码更新了你去重启下服务器" "不去"
-
+- 分叉.       "兄弟, 代码更新了你去重启下服务器"
+  
+  <img src='./img/190614387581808f73fbd6132d8c680.png'>
+  
 ### EOS
 
 EOS基本上具有以上的特征, 并在此基础上针对一些缺陷进行了改进.
