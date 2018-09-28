@@ -20,7 +20,7 @@
   - Mastering bitcoin:
 
     区块链是由包含交易信息的区块`从后向前有序链接起来`的数据结构。 它可以被存储为flat file（⼀种包含没有相对关系记录的
-    ⽂件） ， 或是存储在⼀个简单`数据库`中。 ⽐特币核⼼客⼾端使⽤Google的`LevelDB数据库`存储区块链元数据。 区块被从后向
+    ⽂件） ， 或是存储在⼀个简单`数据库`中。 ⽐特币核心客⼾端使⽤Google的`LevelDB数据库`存储区块链元数据。 区块被从后向
     前有序地链接在这个链条⾥， `每个区块都指向前⼀个区块`。 区块链经常被视为⼀个`垂直的栈`， 第⼀个区块作为栈底的⾸区
     块， 随后每个区块都被放置在其他区块之上。 ⽤栈来形象化表⽰区块依次堆叠这⼀概念后， 我们便可以使⽤⼀些术语， 例
     如： __“⾼度”来表⽰区块与⾸区块之间的距离__； 以及“顶部”或“顶端”来表⽰最新添加的区块。
@@ -89,9 +89,9 @@
 
 - 共识:   分布式系统中必备的数据一致性策略, bitcoin, ethereum为PoW, EOS为DPoS. Fabric中用到PBFT
   
-  - 中本聪的主要发明就是这种__去中⼼化的⾃发共识机制__。 这种⾃发， 是指没有经过明确选举或者没有固定达成的共识的时间。
-  换句话说， __共识是数以千计的独⽴节点遵守了简单的规则通过异步交互⾃发形成的产物__。 所有的⽐特币属性， 包括货币、 交
-  易、 ⽀付以及不依靠中⼼机构和信任的安全模型等都是这个机制的衍⽣物。 ⽐特币的去中⼼化共识由所有⽹络节点的4种独⽴
+  - 中本聪的主要发明就是这种 __去中心化的自发共识机制__。 这种自发， 是指没有经过明确选举或者没有固定达成的共识的时间。
+  换句话说， __共识是数以千计的独⽴节点遵守了简单的规则通过异步交互自发形成的产物__。 所有的⽐特币属性， 包括货币、 交
+  易、 ⽀付以及不依靠中心机构和信任的安全模型等都是这个机制的衍⽣物。 ⽐特币的去中心化共识由所有⽹络节点的4种独⽴
   过程相互作⽤⽽产⽣：
     - 每个全节点依据综合标准对每个交易进⾏独⽴验证
     - 通过完成`⼯作量证明算法`的验算， 挖矿节点将交易记录独⽴打包进新区块，
@@ -104,17 +104,22 @@
   - Delegated Proof of Stake (DPoS) 
 
 - 交易:   原文为transaction, 也可理解为事务. 区块中主要记录下来的内容
-- Merkle: 一种哈希二叉树, 啊啊啊~哈希~. 用于快速验证交易的正确性
+
+  bitcoin 中使用了UTXO, 和传统的账户余额是完全不同的两个概念.
+
+  <img src='./img/87c1abeecc9453870d14789d754647a.png'>
+
+- Merkle: 一种哈希二叉树, 啊啊啊\~哈希\~. 用于快速验证交易的正确性
 
   <img src='./img/8bf57d75a10e8306d1956f9e64289ac.png'>
 
   <img src='./img/38574522a10d96bef3d76e14f2e2b67.png'>
 
-- 经济模型: 交易费, 矿工奖励, 用户奖励等等.
+- 经济模型: 交易费, 矿工奖励, 用户奖励, token发行量.
 
 #### blockchain 2.0
 
-- 智能合约: 
+- 智能合约:
   - bitcoin的交易中会包含一个script, 由bitcoin定义的一个指令集中的各种指令构成, 用于验证交易的有效性
   - ethereum提出了smart contract的概念, 将区块链的功能从单纯的记录交易数据拓展出无限的可能
 
@@ -196,11 +201,15 @@ EOS基本上具有以上的特征, 并在此基础上针对一些缺陷进行了
 #### 特点
 
 - `DPOS` Delegate Proof of Stake [link](https://medium.com/eosio/dpos-bft-pipelined-byzantine-fault-tolerance-8a0634a270ba)
-  - 21个超级节点(Producer)
+  - 21个超级节点(Producer = bp = 区块生产者 = 超级节点)
+  - 21个节点轮流出块, 每次生成6个区块, 6 * 21 = 121 为一轮
   - 低延迟, 0.5s 出一个块
+  - 15/21以上的节点达成一致, 区块才会被确认
   - 没有手续费.
   - 超级节点会有出块奖励
-- 投票. 
+  - 超级节点十分懈怠 -> 不出块没有奖励, 超过24h会被除名
+- 投票.
+  - 用户可以通过抵押(Stake)的资源获取一定的投票权限, 也可以委托给他人帮自己投票
   - EOS上的所有事情都可以通过投票来决定, 稳
   - 不可篡改 -> 投票篡改
   - 21个超级节点由用户投票(1EOS=1票)来产生
@@ -217,6 +226,7 @@ EOS基本上具有以上的特征, 并在此基础上针对一些缺陷进行了
   - 计算与计算储备 (中央处理器)
   - 状态存储 (内存)
 - WASM, 兼容EVM.
+  - 智能合约使用C++进行编写
 
 #### EOS 官方自吹
 
@@ -235,6 +245,8 @@ Some of the groundbreaking features of EOSIO include:
 - Designed for Parallel Execution of Context Free Validation Logic
 - Designed for Inter Blockchain Communication
 
+<img src='./img/b405b1701cf12cb784bea69e3b27288.png'>
+
 ### EOSIO 软件介绍
 
 EOSIO comes with a number of programs. The primary ones that you will use, and the ones that are covered here, are:
@@ -251,6 +263,8 @@ and deploy them in a single host, single node test network (testnet) configurati
 
 <img src='./img/582e059-411_DevRelations_NodeosGraphic_Option3.png'>
 
+<img src='./img/bc760830f4b2cbe85076ddb94c2fbc5.png'>
+
 ### Use Case
 
 #### nodeos
@@ -259,7 +273,9 @@ nodeos 各种功能依赖于 `plugin`, 可在运行nodeos时设定是否开启�
 
 [plugin 详解](./plugin/plugin.md)
 
-v1.3.0目前存在的 plugin
+<img src='./img/a74d04716365b5f8b472bc79da798e4.png'>
+
+v1.3.0 目前存在的 plugin
 
 `bnet_plugin` block net, 同步区块的网络协议
 
@@ -951,6 +967,18 @@ Subcommands:
   multisig                    Multisig contract commands
   system                      Send eosio.system contract action to the blockchain.
 ```
+
+#### bios.tutorial.py
+
+官方自带测试脚本, 一键经历eos的一生
+
+[详解](https://github.com/BlockchainLabFudan/GOCint/blob/master/bios-boot-tutorial.md)
+
+<img src='./img/76494edce434baa4593c11636b71c68.png'>
+
+注意调整参数
+
+<img src='./img/ef89377f01c91d5248fe463948c0d2c.png'>
 
 ### 传送门
 
