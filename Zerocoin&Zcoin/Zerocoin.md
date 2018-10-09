@@ -8,7 +8,7 @@
 
 **Anonymous** 是指：**unlinkable**，在Zerocoin中的描述是：“break the link between individual Bitcoin transactions”，就是无法确定谁给谁转了钱，即交易中的 from 和to 的对应关系被打破。
 
-**门罗币（Monero）** 是通过 **环签名（ring signature）**对输入地址进行隐藏来达到匿名性，在发起交易时，可以选择隐私等级(privacy levle)，即环签名中成员的数量。成员数量越多，隐匿程度越好，但是交易费越⾼，因为交易费与交易数据⼤⼩相关。
+**门罗币（Monero）** 是通过 **环签名（ring signature）** 对输入地址进行隐藏来达到匿名性，在发起交易时，可以选择隐私等级(privacy levle)，即环签名中成员的数量。成员数量越多，隐匿程度越好，但是交易费越⾼，因为交易费与交易数据⼤⼩相关。
 
 ![image-20181009212455067](images/image-20181009212455067.png)
 
