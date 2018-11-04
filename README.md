@@ -8,3 +8,5 @@ Slides of presentation in seminar
 2. [eos - eos简介](./eos/outline.md)
 
 3. [zerocoin/zcoin - zerocoin/zcoin简介](./Zerocoin&Zcoin/Zerocoin.md)
+
+4. [crypto research](./crypto%20research/outline.md)
