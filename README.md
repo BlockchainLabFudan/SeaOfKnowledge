@@ -11,6 +11,4 @@ Slides of presentation in seminar
 
 4. [crypto research](./crypto-research/outline.md)
 
-<p align="justify">
-  Copyright @Blockchain Lab of Fudan University. 2018
-</p>
+<p align="justify">Copyright @Blockchain Lab of Fudan University. 2018</p>
