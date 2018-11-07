@@ -9,8 +9,6 @@ Slides of presentation in seminar
 
 3. [zerocoin/zcoin - zerocoin/zcoin简介](./Zerocoin&Zcoin/Zerocoin.md)
 
-4. [crypto research](./crypto-research/outline.md)
+## _EOF_
 
-<p align="justify">
-  Copyright @Blockchain Lab of Fudan University. 2018
-</p>
+<p align="center">Copyright @Blockchain Lab of Fudan University. 2018</p>
