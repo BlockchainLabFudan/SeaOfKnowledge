@@ -11,6 +11,8 @@ Slides of presentation in seminar
 
 4. [cmake](./cmake/Cmake-note.pdf)
 
+4. [goc](./goc/goc.md)
+
 ## _EOF_
 
 <p align="center">Copyright @Blockchain Lab of Fudan University. 2018</p>
