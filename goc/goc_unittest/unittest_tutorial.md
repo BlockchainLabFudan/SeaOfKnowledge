@@ -1,7 +1,9 @@
 # GOC unittest
 
 ## 综述
+
 ### unittest的作用（个人理解）
+
 * 编写unittest是为了确保基本功能是正确的，同时也可以测试修改的代码会不会破坏原有正确的功能。
 * unittest应该尽量覆盖会出错的环节。
 * unittest一般不包括复杂的功能测试。
@@ -36,7 +38,9 @@ Running 1 test case...
 ```
 
 ## 有用的api
+
 ### get table 
+
 ```cpp
 vector<char> base_tester::get_row_by_account( uint64_t code, uint64_t scope, uint64_t table, const account_name& act )
 
@@ -46,6 +50,7 @@ vector<char> base_tester::get_row_by_id( uint64_t code, uint64_t scope, uint64_t
 通过该函数可以查询之前push_action到链上的数据，并与之前的数据进行比较，就可以测试功能是否正确。
 
 ### push action
+
 ```cpp
 action_result push_action( const account_name& signer, const action_name &name, const variant_object &data, bool auth = true )
 ```
@@ -55,8 +60,9 @@ signer是该action的发起人，name是action名，data是action内的数据。
 
 
 ## GOC相关测试项
+
 | 代码位置 | 测试组 | 单元测试 | 覆盖的功能 | 备注 |
-| -------- | ------ | -------- | ------- | ------- |
+| --- | --- | --- | --- | --- |
 |eosio.system_tests.cpp|eosio_system_tests|goc_stake_unstake|GOC抵押与赎回测试| |
 |eosio.system_tests.cpp|eosio_system_tests|goc_new_update_prop|GOC创建与更新提案| |
 |eosio.system_tests.cpp|eosio_system_tests|goc_vote_test|GOC用户对提案投票| |
@@ -65,8 +71,9 @@ signer是该action的发起人，name是action名，data是action内的数据。
 |eosio.system_tests.cpp|eosio_system_tests|multiple_producer_pay|GOC 多节点投票奖励发放|在EOS的基础上修改，还未完成 |
 
 ### 如何编写测试代码
-1、理解被测试功能的相应逻辑（重要）
-2、参照已有的测试项写新的测试代码
+
+1. 理解被测试功能的相应逻辑（重要）
+2. 参照已有的测试项写新的测试代码
 
 
 
