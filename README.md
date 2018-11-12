@@ -9,6 +9,8 @@ Slides of presentation in seminar
 
 3. [zerocoin/zcoin - zerocoin/zcoin简介](./Zerocoin&Zcoin/Zerocoin.md)
 
+4. [cmake](./cmake/Cmake-note.pdf)
+
 ## _EOF_
 
 <p align="center">Copyright @Blockchain Lab of Fudan University. 2018</p>
