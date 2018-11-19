@@ -254,6 +254,7 @@ cleos --wallet-url http://127.0.0.1:6666 --url http://127.0.0.1:8000 set contrac
 | cpu    | 2114 | 2587 | +473 |
 
 以上过程帐号zmaozmaozmao一直保持着
+
 | 帐号：zmaozmaozmao | used |
 | -------- | -------- |
 |memory    |106359 |
