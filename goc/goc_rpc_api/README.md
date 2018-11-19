@@ -15,7 +15,7 @@ goc的HTTP RPC 大部分与eos 相同，本文将分析[eos 官方资料](https:
 |命令 | cleos get info |
 
 
-```json
+```
 {
     "server_version": "672aad51",
     "chain_id": "1c6ae7719a2a3b4ecb19584a30ff510ba1b6ded86e1fd8b8fc22f1179c622a32",
