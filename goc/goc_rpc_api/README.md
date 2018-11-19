@@ -48,11 +48,11 @@ goc的HTTP RPC 大部分与eos 相同，本文将分析[eos 官方资料](https:
 
 ### get_table_rows
 
-具休参考[goc_table]( ./goc_table/goc_table.md )
+具体参考[goc_table]( ./goc_table/goc_table.md )
 
 | url  | /v1/chain/get_table_rows |
 | -------- | ------ |
-| body | 具休参考[goc_table]( ./goc_table/goc_table.md )  |
+| body | 具体参考[goc_table]( ./goc_table/goc_table.md )  |
 |说明 | 表信息 |
 |命令 | cleos get table [OPTIONS] account scope table |
 
